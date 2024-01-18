@@ -33,12 +33,11 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
     const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
     trayIcon.setImage(icon);
     
-    if (type = 'badge') {
-        app.SetBadgeCount('•');
+    if (type == 'badge') {
+        app.setBadgeCount('•');
     } else {
-        app.SetBadgeCount('');
-    }
-    
+        app.setBadgeCount('');
+    }    
   });
 
   ipcMain.on('unreadCount', (event, count: number) => {
