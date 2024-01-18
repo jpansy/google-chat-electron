@@ -32,6 +32,13 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
     const size = is.macos ? 16 : 32;
     const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
     trayIcon.setImage(icon);
+    
+    if (type = 'badge') {
+        app.SetBadgeCount('•');
+    } else {
+        app.SetBadgeCount('');
+    }
+    
   });
 
   ipcMain.on('unreadCount', (event, count: number) => {
