@@ -1,10 +1,10 @@
-name: release-mac
+name: pr-mac
 
 on:
   pull_request
 
 jobs:
-  release-mac:
+  pr-mac:
     name: pr-mac
     runs-on: macos-11
     timeout-minutes: 10
