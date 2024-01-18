@@ -34,9 +34,9 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
     trayIcon.setImage(icon);
     
     if (type == 'badge') {
-        app.setBadgeCount('•');
+        app.setBadgeCount();
     } else {
-        app.setBadgeCount('');
+        app.setBadgeCount(0);
     }    
   });
 
