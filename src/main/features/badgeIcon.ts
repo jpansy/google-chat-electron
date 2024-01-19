@@ -28,14 +28,24 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
   ipcMain.on('faviconChanged', (evt, href) => {
     const type = decideIcon(String(href));
 
+    // Unread indicator for tray icon
     console.log(`faviconChanged: ${type}`);
     const size = is.macos ? 16 : 32;
     const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
     trayIcon.setImage(icon);
+
+    // Unread indicator for dock icon (on mac/linux)     
+    if (type == 'badge') {
+        app.setBadgeCount();
+    } else if (type == 'normal') {
+        app.setBadgeCount(0);
+    }    
   });
 
   ipcMain.on('unreadCount', (event, count: number) => {
-    app.setBadgeCount(Number(count))
+    // TODO: Unread count is currently not working and function never called therefore deactivated and replaced with unread indicator
+    
+    // app.setBadgeCount(Number(count))
 
     if (store.get('app.showOnMessage')) {
       if (count > 0) {
