@@ -43,9 +43,9 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
   });
 
   ipcMain.on('unreadCount', (event, count: number) => {
-    // TODO: Unread count is currently not working and function never called
-
-    app.setBadgeCount(Number(count))
+    // TODO: Unread count is currently not working and function never called therefore deactivated and replaced with unread indicator
+    
+    // app.setBadgeCount(Number(count))
 
     if (store.get('app.showOnMessage')) {
       if (count > 0) {
