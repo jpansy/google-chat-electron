@@ -13,7 +13,7 @@ const scriptPath = path.join(app.getPath('appData'), 'google-chat-electron', 'on
 const decideIcon = (href: string): IconTypes => {
   let type: IconTypes = 'offline';
 
-  if (href.match(/favicon_chat_r3/) ||
+  if (href.match(/favicon_chat_r/) ||
     href.match(/favicon_chat_new_non_notif/)) {
     type = 'normal';
   } else if (href.match(/favicon_chat_new_notif/)) {
