@@ -1,7 +1,9 @@
 name: release-windows
 
-on:   
-  workflow_dispatch:
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   release-windows:
