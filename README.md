@@ -1,27 +1,20 @@
 # Note
 
 Since all other development has been discontinued, I created my own build. Only the mac build is maintained and tested.
- 
-Use this at your own risk. ;-)
 
 ### Installation notes for Mac
-* google-chat-electron-*-darwin-x64.zip **works on every mac**. [Download] (https://github.com/jpansy/google-chat-electron/releases) and extract zip and copy "google-chat-electron" binary to application folder. Launch app and allow it in system settings.
-* The **Apple Silicon** optimized version is google-chat-electron-*-darwin-arm64.zip
-and requires to open "terminal" and execute sudo xattr -rd com.apple.quarantine /Applications/google-chat-electron.app after the "google-chat-electron" binary has been copied to the application folder.
+* For **Apple Silicon** macs download the **google-chat-electron-*-darwin-arm64.zip** file. For **all other macs** download **google-chat-electron-*-darwin-x64.zip** from the [releases folder](https://github.com/jpansy/google-chat-electron/releases).
+* Extract the zip file and copy the "google-chat-electron" binary into the Application folder.
+* On **Apple Silicon** macs run this command in a terminal window: 
 
+```bash
+sudo xattr -rd com.apple.quarantine /Applications/google-chat-electron.app after the "google-chat-electron" binary has 
+```
+* Launch the Application and have fun ;-)
 
 ___
 
-
-# Desktop app for Google Chat
-
-[![latest-tag](https://badgen.net/github/release/ankurk91/google-chat-electron)](https://github.com/ankurk91/google-chat-electron/releases)
-[![downloads](https://img.shields.io/github/downloads/ankurk91/google-chat-electron/total?cacheSeconds=3600)](https://somsubhra.github.io/github-release-stats/?username=ankurk91&repository=google-chat-electron&page=1&per_page=30)
-[![homebrew](https://badgen.net/homebrew/cask/dy/google-chat-electron)](https://formulae.brew.sh/cask/google-chat-electron)
-[![chocolatey](https://img.shields.io/chocolatey/dt/unofficial-Google-Chat-Electron?color=blue&label=chocolatey)](https://community.chocolatey.org/packages/unofficial-Google-Chat-Electron)
-[![release-linux](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-linux.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-linux.yml)
-[![release-mac](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-mac.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-mac.yml)
-[![release-windows](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml)
+# Desktop app for Google Chat (old)
 
 An unofficial desktop app for [Google Chat](http://chat.google.com) built with [Electron](https://www.electronjs.org)
 
