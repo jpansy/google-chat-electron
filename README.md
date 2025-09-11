@@ -8,9 +8,9 @@ Since all other development has been discontinued, I created my own build. Only 
 * On **Apple Silicon** macs run this command in a terminal window: 
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/google-chat-electron.app after the "google-chat-electron" binary has 
+sudo xattr -rd com.apple.quarantine /Applications/google-chat-electron.app 
 ```
-* Launch the Application and have fun ;-)
+* Launch the Application and log into Google Chat
 
 ___
 
