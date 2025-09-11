@@ -1,7 +1,13 @@
 # Note
 
-Since all other development has been discontinued, I created my own build. Only the mac build is maintained and tested. 
+Since all other development has been discontinued, I created my own build. Only the mac build is maintained and tested.
+ 
 Use this at your own risk. ;-)
+
+### Installation notes for mac
+* google-chat-electron-*-darwin-x64.zip works on every mac. Download and extract zip and copy "google-chat-electron" binary to application folder. Launch app and allow it in system settings.
+* Apple Silicon (M1-M3) optimized version is google-chat-electron-*-darwin-arm64.zip
+and requires to open "terminal" and execute sudo xattr -rd com.apple.quarantine /Applications/google-chat-electron.app after "google-chat-electron" binary has been copied to application folder.
 
 ___
 
