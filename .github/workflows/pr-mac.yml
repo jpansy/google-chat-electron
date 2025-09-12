@@ -6,7 +6,7 @@ on:
 jobs:
   pr-mac:
     name: pr-mac
-    runs-on: macos-11
+    runs-on: macos-latest
     timeout-minutes: 10
 
     steps:
@@ -36,7 +36,7 @@ jobs:
           npm run build:mac-arm-zip
           
       - name: Upload binaries
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pr-artifacts
           path: './dist/installers/*.*'

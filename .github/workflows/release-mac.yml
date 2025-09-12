@@ -4,11 +4,12 @@ on:
   push:
     tags:
       - '*'
+  workflow_dispatch:
 
 jobs:
   release-mac:
     name: release-mac
-    runs-on: macos-11
+    runs-on: macos-latest
     timeout-minutes: 10
 
     steps:
