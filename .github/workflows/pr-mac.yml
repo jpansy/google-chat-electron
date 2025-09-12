@@ -6,7 +6,7 @@ on:
 jobs:
   pr-mac:
     name: pr-mac
-    runs-on: macos-11
+    runs-on: macos-latest
     timeout-minutes: 10
 
     steps:
