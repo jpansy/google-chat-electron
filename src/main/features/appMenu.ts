@@ -1,13 +1,25 @@
 import {Menu, app, shell, clipboard, BrowserWindow, dialog} from 'electron';
 import {checkForUpdates} from 'electron-update-notifier';
 import path from 'path';
-import {openNewGitHubIssue, debugInfo} from 'electron-util';
+import { openNewGitHubIssue } from 'electron-util';
 import log from 'electron-log';
 import {autoLaunch} from './openAtLogin';
 import aboutPanel from './aboutPanel';
 import store from './../config';
 import {toggleExternalLinksGuard} from "./externalLinks";
 import environment from "../../environment";
+
+// New replacement function
+const getDebugInfo = () => {
+    return [
+        `Platform: ${process.platform}`,
+        `OS Version: ${process.getSystemVersion()}`,
+        `Electron: ${process.versions.electron}`,
+        `Chromium: ${process.versions.chrome}`,
+        `Node: ${process.versions.node}`,
+        `Locale: ${app.getLocale()}`
+    ].join('\n');
+};
 
 export default (window: BrowserWindow) => {
   const pkg = require(path.join(app.getAppPath(), 'package.json'));
@@ -236,7 +248,7 @@ export default (window: BrowserWindow) => {
               click: () => {
                 openNewGitHubIssue({
                   repoUrl: pkg.repository,
-                  body: `### Platform\n\n${debugInfo()}`
+                  body: `### Platform\n\n${getDebugInfo()}`
                 });
               }
             },

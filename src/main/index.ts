@@ -15,9 +15,7 @@ import closeToTray from './features/closeToTray';
 import setAppMenu from './features/appMenu';
 import overrideUserAgent from './features/userAgent';
 import setupOfflineHandlers, {checkForInternet} from './features/inOnline';
-import logFirstLaunch from './features/firstLaunch';
 import handleNotification from './features/handleNotification';
-import {enforceMacOSAppLocation} from "electron-util";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -36,7 +34,6 @@ if (enforceSingleInstance()) {
       checkForInternet(mainWindow);
 
       trayIcon = setupTrayIcon(mainWindow);
-      logFirstLaunch();
       setAppMenu(mainWindow);
       restoreFirstInstance(mainWindow);
       keepWindowState(mainWindow);
@@ -47,7 +44,6 @@ if (enforceSingleInstance()) {
       closeToTray(mainWindow);
       externalLinks(mainWindow);
       handleNotification(mainWindow);
-      enforceMacOSAppLocation();
     })
 }
 

@@ -1,4 +1,4 @@
-import Store from 'electron-store';
+import Store, { Schema } from 'electron-store';
 import {Rectangle} from 'electron';
 
 type StoreType = {
@@ -16,7 +16,7 @@ type StoreType = {
   }
 }
 
-const schema: Store.Schema<StoreType> = {
+const schema: Schema<StoreType> = {
   window: {
     type: 'object',
     properties: {
