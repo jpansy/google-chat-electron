@@ -1,6 +1,7 @@
 import { ipcMain, app, nativeImage, BrowserWindow, Tray } from 'electron';
 import path from 'path';
 import { is } from "electron-util";
+import log from 'electron-log';
 import store from '../config';
 import fs from 'fs';
 import { spawn } from 'child_process';
@@ -9,18 +10,28 @@ type IconTypes = 'offline' | 'normal' | 'badge';
 let lastCount: number = -1;
 const scriptPath = path.join(app.getPath('appData'), 'google-chat-electron', 'on-message.sh');
 
-// Decide app icon based on favicon URL
+// Decide app icon based on favicon URL.
+// Google Chat has shipped two favicon schemes; we match both.
+//   Legacy (gstatic ui/v1/icons/mail/...):
+//     favicon_chat_r*                  -> normal (no unread)
+//     favicon_chat_new_non_notif*      -> normal (read state)
+//     favicon_chat_new_notif*          -> badge  (unread)
+//   Chat 2026 (gstatic dynamite/images/favicons_*/...):
+//     chat_2026_logo_favicon_no_dot_*  -> normal (no unread)
+//     chat_2026_logo_favicon_dot_*     -> badge  (unread)
 const decideIcon = (href: string): IconTypes => {
-  let type: IconTypes = 'offline';
-
-  if (href.match(/favicon_chat_r/) ||
-    href.match(/favicon_chat_new_non_notif/)) {
-    type = 'normal';
-  } else if (href.match(/favicon_chat_new_notif/)) {
-    type = 'badge';
+  if (href.match(/chat_2026_logo_favicon_dot/) ||
+      href.match(/favicon_chat_new_notif/)) {
+    return 'badge';
   }
 
-  return type;
+  if (href.match(/chat_2026_logo_favicon_no_dot/) ||
+      href.match(/favicon_chat_r/) ||
+      href.match(/favicon_chat_new_non_notif/)) {
+    return 'normal';
+  }
+
+  return 'offline';
 }
 
 export default (window: BrowserWindow, trayIcon: Tray) => {
@@ -28,7 +39,7 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
   ipcMain.on('faviconChanged', (evt, href) => {
     const type = decideIcon(String(href));
 
-    // Unread indicator for tray icon
+    log.info(`[favicon] href="${href}" -> type=${type}`);
     console.log(`faviconChanged: ${type}`);
     const size = is.macos ? 16 : 32;
     const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
